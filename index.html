@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Device Detection</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Current Device:</h1>
+  <p id="deviceType"></p>
+
+  <script>
+    function isiPad() {
+      return /iPad/i.test(navigator.userAgent);
+    };
+
+    function isiPhone() {
+      return /iPhone/i.test(navigator.userAgent);
+    };
+
+    function isAndroid() {
+      return /Android/i.test(navigator.userAgent);
+    };
+
+    function isDesktop() {
+      return !isiPad() && !isiPhone() && !isAndroid();
+    };
+
+    window.onload = () => {
+      let deviceType;
+
+      if (isiPad()) {
+        deviceType = "iPad";
+      } else if (isiPhone()) {
+        deviceType = "iPhone";
+      } else if (isAndroid()) {
+        deviceType = "Android";
+      } else if (isDesktop()) {
+        deviceType = "Desktop";
+      } else {
+        deviceType = "Unknown";
+      }
+
+      document.getElementById('deviceType').textContent = deviceType;
+    };
+  </script>
+</body>
+</html>
