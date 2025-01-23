@@ -16,6 +16,9 @@
   <h1>Current Device:</h1>
   <p id="deviceType"></p>
 
+  <h2>Window Dimensions:</h2>
+  <p id="windowDimensions"></p>
+
   <script>
     function isiPad() {
       return /iPad/i.test(navigator.userAgent);
@@ -33,6 +36,12 @@
       return !isiPad() && !isiPhone() && !isAndroid();
     };
 
+    function updateWindowDimensions() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      document.getElementById('windowDimensions').textContent = `${width}px x ${height}px`;
+    }
+
     window.onload = () => {
       let deviceType;
 
@@ -49,7 +58,10 @@
       }
 
       document.getElementById('deviceType').textContent = deviceType;
+      updateWindowDimensions();
     };
+
+    window.onresize = updateWindowDimensions;
   </script>
 </body>
 </html>
